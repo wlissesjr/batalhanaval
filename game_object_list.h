@@ -1,26 +1,25 @@
 #ifndef _LISTA_H_
 #define _LISTA_H_
 
-#include <iostram>
-#include <game_object.h>
+#include <iostream>
+#include "game_object.h"
 
 using namespace std;
 
 class No {
 public:
 	GameObject *elemento;
-	GameObject *proximo;
+	No *proximo;
 };
 
 class GameObjectList {
 
 private:
-	No cabeca;
-	No ultimo;
-	int tamanho;
+	No *cabeca;
 
 public:
 	GameObjectList();
+	void Add(GameObject *elemento);
 	void Render();
 
 };

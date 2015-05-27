@@ -5,6 +5,7 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_native_dialog.h>
 #include "game_object.h"
+#include "game_object_list.h"
 #include "tanque.h"
 
 using namespace std;
@@ -19,6 +20,8 @@ int main(){
 	al_set_new_display_flags(ALLEGRO_WINDOWED);
 	display = al_create_display(600, 600);
 
+	GameObjectList *lista;
+
 	Tanque *tanque = new Tanque();
 	Tanque *tanque2 = new Tanque();
 
@@ -29,12 +32,16 @@ int main(){
 	tanque->setVelocidade_y(10);
 	tanque->setAtrito(0.1);
 
+	lista->Add(tanque);
+
 	tanque2->setNome("Wlisses");
 	tanque2->setPosicao_x(20);
 	tanque2->setPosicao_y(300);
 	tanque2->setVelocidade_x(0);
 	tanque2->setVelocidade_y(-10);
 	tanque2->setAtrito(0.2);
+
+	lista->Add(tanque2);
 
 	ALLEGRO_EVENT events;
 
@@ -57,8 +64,7 @@ int main(){
 
 			if(draw){
 				draw = false;
-				tanque->Render();
-				tanque2->Render();
+				lista->Render();
 				al_flip_display();
 				al_clear_to_color(al_map_rgb(0,0,0));
 			}else{

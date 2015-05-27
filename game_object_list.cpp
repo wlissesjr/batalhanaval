@@ -6,16 +6,32 @@ using namespace std;
 
 GameObjectList::GameObjectList(){
 	this->cabeca = NULL;
-	this->ultimo = NULL;
-	this->tamanho = 0;
+}
+
+void GameObjectList::Add(GameObject *elemento){
+	No *novo = new No();
+	novo->elemento = elemento;
+	novo->proximo = NULL;
+
+	if(this->cabeca = NULL){
+		this->cabeca = novo;
+	}else{
+		No *atual;
+		atual = this->cabeca;
+		while (atual->proximo != NULL) {
+			atual = atual->proximo;
+		}
+
+		atual->proximo = novo;
+	}
 }
 
 void GameObjectList::Render(){
-	if(this->tamanho <= 0){
-		return 0;
-	}else{
-		No atual = new No;
-		atual = this->cabeca->proximo;
-		atual->Render();
+	if(this->cabeca != NULL){
+		No *atual = this->cabeca;
+		string tipo;
+		do{
+			atual->elemento->Render();
+		}while (atual->proximo != NULL);
 	}
 }
