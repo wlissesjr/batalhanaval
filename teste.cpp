@@ -20,28 +20,28 @@ int main(){
 	al_set_new_display_flags(ALLEGRO_WINDOWED);
 	display = al_create_display(600, 600);
 
-	GameObjectList *lista;
+	GameObjectList *lista = new GameObjectList();
 
-	Tanque *tanque = new Tanque();
-	Tanque *tanque2 = new Tanque();
+	GameObject *tanque = new Tanque();
+	GameObject *basico = new GameObject();
 
 	tanque->setNome("Wlisses");
 	tanque->setPosicao_x(20);
 	tanque->setPosicao_y(20);
 	tanque->setVelocidade_x(0);
 	tanque->setVelocidade_y(10);
-	tanque->setAtrito(0.1);
+	tanque->setAtrito(0.09);
 
 	lista->Add(tanque);
 
-	tanque2->setNome("Wlisses");
-	tanque2->setPosicao_x(20);
-	tanque2->setPosicao_y(300);
-	tanque2->setVelocidade_x(0);
-	tanque2->setVelocidade_y(-10);
-	tanque2->setAtrito(0.2);
+	basico->setNome("Wendell");
+	basico->setPosicao_x(20);
+	basico->setPosicao_y(300);
+	basico->setVelocidade_x(0);
+	basico->setVelocidade_y(-10);
+	basico->setAtrito(0.19);
 
-	lista->Add(tanque2);
+	lista->Add(basico);
 
 	ALLEGRO_EVENT events;
 
@@ -58,10 +58,11 @@ int main(){
 
 	ALLEGRO_COLOR cor = al_map_rgb(0,0,139);
 
+	lista->Render();
+
 	while(!finalizado){
 		al_wait_for_event(event_queue, &events);
 		if(events.type == ALLEGRO_EVENT_TIMER){
-
 			if(draw){
 				draw = false;
 				lista->Render();
@@ -69,7 +70,7 @@ int main(){
 				al_clear_to_color(al_map_rgb(0,0,0));
 			}else{
 				tanque->Update();
-				tanque2->Update();
+				basico->Update();
 				draw = true;
 			}
 		}

@@ -19,6 +19,8 @@ protected:
 	float qtd_municao;
 
 public:
+	GameObject();
+
 	string getNome();
 	void setNome(string nome);
 
@@ -38,7 +40,7 @@ public:
 	void setAtrito(float atrito);
 
 	void Update();
-	void Render();
+	virtual void Render();
 	virtual string Tipo();
 
 };

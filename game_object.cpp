@@ -4,6 +4,8 @@
 
 using namespace std;
 
+GameObject::GameObject(){}
+
 string GameObject::getNome(){
 	return this->nome;
 }
@@ -60,7 +62,7 @@ void GameObject::Update(){
 }
 
 void GameObject::Render(){
-
+	cout << "Objeto basico!" << endl;
 }
 
 string GameObject::Tipo(){

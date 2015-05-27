@@ -13,25 +13,21 @@ void GameObjectList::Add(GameObject *elemento){
 	novo->elemento = elemento;
 	novo->proximo = NULL;
 
-	if(this->cabeca = NULL){
+	if(this->cabeca == NULL){
 		this->cabeca = novo;
 	}else{
-		No *atual;
-		atual = this->cabeca;
+		No *atual = this->cabeca;
 		while (atual->proximo != NULL) {
 			atual = atual->proximo;
 		}
-
 		atual->proximo = novo;
 	}
 }
 
 void GameObjectList::Render(){
-	if(this->cabeca != NULL){
-		No *atual = this->cabeca;
-		string tipo;
-		do{
-			atual->elemento->Render();
-		}while (atual->proximo != NULL);
+	No *atual = this->cabeca;
+	while(atual != NULL){
+		atual->elemento->Render();
+		atual = atual->proximo;
 	}
 }
