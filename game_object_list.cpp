@@ -31,3 +31,21 @@ void GameObjectList::Render(){
 		atual = atual->proximo;
 	}
 }
+
+void GameObjectList::Update(){
+	No *atual = this->cabeca;
+	while(atual != NULL){
+		atual->elemento->Update();
+		atual = atual->proximo;
+	}
+}
+
+GameObject* GameObjectList::Mouse_Down(float x, float y){
+	No *atual = this->cabeca;
+	while(atual != NULL){
+		if((atual->elemento->getPosicao_x() < x && x < (atual->elemento->getPosicao_x()+32)) && (atual->elemento->getPosicao_y() < y && y < (atual->elemento->getPosicao_y()+32))){
+			return atual->elemento;
+		}
+		atual = atual->proximo;
+	}
+}

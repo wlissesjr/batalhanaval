@@ -7,41 +7,61 @@
 #include "game_object.h"
 #include "game_object_list.h"
 #include "tanque.h"
+#include "mapa.h"
 
 using namespace std;
 
 int main(){
 
+	Mapa *mapa = new Mapa(); // Iniciliza o mapa
+
 	ALLEGRO_DISPLAY *display;
 
-	al_init();
-	al_init_image_addon();
-	al_init_primitives_addon();
+	al_init();//Inicializa allegro
+	al_init_image_addon();//Inicializa o uso de imagens
+	al_init_primitives_addon();//Inicializa o uso de primitivas
+	al_install_mouse();//Inicializa o uso do mouse
+
 	al_set_new_display_flags(ALLEGRO_WINDOWED);
-	display = al_create_display(600, 600);
+	display = al_create_display(mapa->getLargura(), mapa->getAltura());
+
+	
 
 	GameObjectList *lista = new GameObjectList();
 
-	GameObject *tanque = new Tanque();
-	GameObject *basico = new GameObject();
+	GameObject *tanque1 = new Tanque();
+	GameObject *tanque2 = new Tanque();
+	GameObject *tanque3 = new Tanque();
+	GameObject *tanque4 = new Tanque();
+	GameObject *tanque5 = new Tanque();
 
-	tanque->setNome("Wlisses");
-	tanque->setPosicao_x(20);
-	tanque->setPosicao_y(20);
-	tanque->setVelocidade_x(0);
-	tanque->setVelocidade_y(10);
-	tanque->setAtrito(0.09);
+	GameObject *objetoselecionado = new GameObject();
 
-	lista->Add(tanque);
+	tanque1->setNome("01");
+	tanque1->setPosicao_x(80);
+	tanque1->setPosicao_y(320);
 
-	basico->setNome("Wendell");
-	basico->setPosicao_x(20);
-	basico->setPosicao_y(300);
-	basico->setVelocidade_x(0);
-	basico->setVelocidade_y(-10);
-	basico->setAtrito(0.19);
+	tanque2->setNome("02");
+	tanque2->setPosicao_x(190);
+	tanque2->setPosicao_y(400);
 
-	lista->Add(basico);
+	tanque3->setNome("03");
+	tanque3->setPosicao_x(270);
+	tanque3->setPosicao_y(380);
+
+	tanque4->setNome("04");
+	tanque4->setPosicao_x(320);
+	tanque4->setPosicao_y(430);
+
+	tanque5->setNome("05");
+	tanque5->setPosicao_x(550);
+	tanque5->setPosicao_y(400);
+
+	lista->Add(tanque1);
+	lista->Add(tanque2);
+	lista->Add(tanque3);
+	lista->Add(tanque4);
+	lista->Add(tanque5);
 
 	ALLEGRO_EVENT events;
 
@@ -50,6 +70,7 @@ int main(){
 	ALLEGRO_TIMER *timer = al_create_timer(1 / fps);
 
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
+	al_register_event_source(event_queue, al_get_mouse_event_source());
 
 	al_start_timer(timer);
 
@@ -65,14 +86,17 @@ int main(){
 		if(events.type == ALLEGRO_EVENT_TIMER){
 			if(draw){
 				draw = false;
+				mapa->Render();
 				lista->Render();
 				al_flip_display();
 				al_clear_to_color(al_map_rgb(0,0,0));
 			}else{
-				tanque->Update();
-				basico->Update();
+				lista->Update();
 				draw = true;
 			}
+		}
+		if(events.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+			objetoselecionado = lista->Mouse_Down(events.mouse.x,events.mouse.y);
 		}
 	}
 
