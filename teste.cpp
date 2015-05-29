@@ -36,6 +36,7 @@ int main(){
 	GameObject *tanque5 = new Tanque();
 
 	GameObject *objetoselecionado = new GameObject();
+	GameObject *objetoauxiliar = new GameObject();
 
 	tanque1->setNome("01");
 	tanque1->setPosicao_x(80);
@@ -96,7 +97,16 @@ int main(){
 			}
 		}
 		if(events.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-			objetoselecionado = lista->Mouse_Down(events.mouse.x,events.mouse.y);
+			objetoauxiliar = lista->Mouse_Down(events.mouse.x,events.mouse.y);
+			if(objetoauxiliar != NULL){
+				objetoselecionado = objetoauxiliar;
+			}else{
+				if(objetoselecionado->Tipo() == "tanque"){
+					objetoselecionado = (Tanque*)objetoselecionado;
+					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
+				}
+				lista->Add(objetoauxiliar);
+			}
 		}
 	}
 

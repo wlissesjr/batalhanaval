@@ -42,6 +42,7 @@ public:
 	void Update();
 	virtual void Render();
 	virtual string Tipo();
+	virtual GameObject* Atirar(float x, float y);
 
 };
 

@@ -16,6 +16,7 @@ public:
 	Tanque();
 	void Render();
 	string Tipo();
+	GameObject* Atirar(float x, float y);
 };
 
 #endif

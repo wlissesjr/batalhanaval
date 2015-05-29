@@ -1,5 +1,6 @@
 #include <iostream>
 #include "tanque.h"
+#include "bala.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 
@@ -20,4 +21,9 @@ void Tanque::Render(){
 
 string Tanque::Tipo(){
 	return "tanque";
+}
+
+GameObject* Tanque::Atirar(float x, float y){
+	GameObject *bala = new Bala(this->posicao_x,this->posicao_y, x, y, 1);
+	return bala;
 }

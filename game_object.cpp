@@ -68,3 +68,7 @@ void GameObject::Render(){
 string GameObject::Tipo(){
 	return "basico";
 }
+
+GameObject* GameObject::Atirar(float x, float y){
+	return this;
+}
