@@ -7,6 +7,9 @@
 #include "game_object.h"
 #include "game_object_list.h"
 #include "tanque.h"
+#include "soldado.h"
+#include "super_tanque.h"
+#include "helicoptero.h"
 #include "mapa.h"
 
 using namespace std;
@@ -31,9 +34,9 @@ int main(){
 
 	GameObject *tanque1 = new Tanque();
 	GameObject *tanque2 = new Tanque();
-	GameObject *tanque3 = new Tanque();
-	GameObject *tanque4 = new Tanque();
-	GameObject *tanque5 = new Tanque();
+	GameObject *tanque3 = new Soldado();
+	GameObject *tanque4 = new Super_Tanque();
+	GameObject *tanque5 = new Helicoptero();
 
 	GameObject *objetoselecionado = new GameObject();
 	GameObject *objetoauxiliar = new GameObject();
@@ -102,6 +105,15 @@ int main(){
 				objetoselecionado = objetoauxiliar;
 			}else{
 				if(objetoselecionado->Tipo() == "tanque"){
+					objetoselecionado = (Tanque*)objetoselecionado;
+					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
+				} else if(objetoselecionado->Tipo() == "soldado"){
+					objetoselecionado = (Tanque*)objetoselecionado;
+					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
+				} else if(objetoselecionado->Tipo() == "super_tanque"){
+					objetoselecionado = (Tanque*)objetoselecionado;
+					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
+				} else if(objetoselecionado->Tipo() == "helicoptero"){
 					objetoselecionado = (Tanque*)objetoselecionado;
 					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
 				}

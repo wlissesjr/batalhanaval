@@ -11,10 +11,11 @@ Bala::Bala(float origem_x, float origem_y, float destino_x, float destino_y, int
 	this->posicao_y = origem_y;
 	float cateto_x = destino_x - origem_x;
 	float cateto_y = destino_y - origem_y;
-	float hipotenuza = sqrt((cateto_x*cateto_x)+(cateto_y*cateto_y));
+	float soma = cateto_x+cateto_y;
+	int cont = 0;
 	if(tipo == 1){
-		this->velocidade_x = 0;
-		this->velocidade_y = -(hipotenuza/60);
+		this->velocidade_x = cateto_x;
+		this->velocidade_y = cateto_y;
 		this->atrito = 0;
 	}
 }
