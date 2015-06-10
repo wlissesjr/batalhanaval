@@ -40,6 +40,33 @@ void GameObjectList::Update(){
 	}
 }
 
+void GameObjectList::Colision(){
+	No *atual = this->cabeca;
+	while (atual->proximo != NULL) {
+		atual = atual->proximo;
+		if (atual.Tipo() == "bala") {
+			No *atual2 = this->cabeca;
+			while (atual2->proximo != NULL) {
+				atual2 = atual2->proximo;
+				if ((atual.getPosicao_x() >= atual2.getPosicao_x() && atual.getPosicao_x() <= atual2.getPosicao_x()+32)
+					&& (atual.getPosicao_y() >= atual2.getPosicao_y() && atual.getPosicao_y() <= atual2.getPosicao_y()){
+						atual.Colidiu(atual2);
+				}
+			}
+		}
+	}
+}
+
+void GameObjectList::Remover(GameObject objeto_remover){
+	if (objeto_remover.Tipo() != "bala"){
+		//só remove
+	}
+	else{
+
+	}
+
+}
+
 GameObject* GameObjectList::Mouse_Down(float x, float y){
 	No *atual = this->cabeca;
 	while(atual != NULL){

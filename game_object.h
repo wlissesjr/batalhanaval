@@ -17,6 +17,8 @@ protected:
 	float atrito;
 	float vida;
 	float qtd_municao;
+	bool inimigo; //se for 1, é inimigo
+	bool atingido;
 
 public:
 	GameObject();
@@ -40,6 +42,7 @@ public:
 	void setAtrito(float atrito);
 
 	void Update();
+	GameObject Colidiu(GameObject objeto_atingido);
 	virtual void Render();
 	virtual string Tipo();
 	virtual GameObject* Atirar(float x, float y);

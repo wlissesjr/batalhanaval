@@ -65,6 +65,13 @@ void GameObject::Render(){
 	cout << "Objeto basico!" << endl;
 }
 
+GameObject GameObject::Colidiu(GameObject objeto_atingido){
+		objeto_atingido.vida -= this->forca;
+		objeto_atingido.atingido = true;
+		//this->remove();
+		return this;
+}
+
 string GameObject::Tipo(){
 	return "basico";
 }

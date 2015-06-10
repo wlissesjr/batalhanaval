@@ -22,6 +22,7 @@ public:
 	void Add(GameObject *elemento);
 	void Render();
 	void Update();
+	void Colision();
 	GameObject* Mouse_Down(float x, float y);
 
 };
