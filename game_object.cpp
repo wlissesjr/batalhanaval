@@ -4,7 +4,9 @@
 
 using namespace std;
 
-GameObject::GameObject(){}
+GameObject::GameObject(){
+	this->vida = 100;
+}
 
 string GameObject::getNome(){
 	return this->nome;
@@ -50,6 +52,20 @@ void GameObject::setAtrito(float atrito){
 	this->atrito = atrito;
 }
 
+float GameObject::getVida(){
+	return this->vida;
+}
+void GameObject::setVida(float vida){
+	this->vida = vida;
+}
+
+float GameObject::getForca(){
+	return this->forca;
+}
+void GameObject::setForca(float forca){
+	this->forca = forca;
+}
+
 void GameObject::Update(){
 
 	this->velocidade_x = this->velocidade_x - (this->velocidade_x*this->atrito);
@@ -57,7 +73,6 @@ void GameObject::Update(){
 
 	this->posicao_x += this->velocidade_x;
 	this->posicao_y += this->velocidade_y;
-
 	
 }
 

@@ -20,9 +20,12 @@ private:
 public:
 	GameObjectList();
 	void Add(GameObject *elemento);
+	void Remove(GameObject *elemento);
 	void Render();
 	void Update();
 	GameObject* Mouse_Down(float x, float y);
+
+	void Colisao(GameObject *bala);
 
 };
 

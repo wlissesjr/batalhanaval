@@ -12,6 +12,7 @@ private:
 public:
 	Bala(float origem_x, float origem_y, float destino_x, float destino_y, int tipo);
 	void Render();
+	string Tipo();
 };
 
 #endif

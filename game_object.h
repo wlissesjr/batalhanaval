@@ -16,7 +16,9 @@ protected:
 	float velocidade_y;
 	float atrito;
 	float vida;
-	float qtd_municao;
+	float forca;
+	bool inimigo; //se for 1, é inimigo
+	bool atingido;
 
 public:
 	GameObject();
@@ -38,6 +40,12 @@ public:
 
 	float getAtrito();
 	void setAtrito(float atrito);
+
+	float getVida();
+	void setVida(float vida);
+
+	float getForca();
+	void setForca(float forca);
 
 	void Update();
 	virtual void Render();

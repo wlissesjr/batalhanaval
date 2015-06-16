@@ -7,6 +7,9 @@
 #include "game_object.h"
 #include "game_object_list.h"
 #include "tanque.h"
+#include "soldado.h"
+#include "super_tanque.h"
+#include "helicoptero.h"
 #include "mapa.h"
 
 using namespace std;
@@ -31,30 +34,30 @@ int main(){
 
 	GameObject *tanque1 = new Tanque();
 	GameObject *tanque2 = new Tanque();
-	GameObject *tanque3 = new Tanque();
-	GameObject *tanque4 = new Tanque();
-	GameObject *tanque5 = new Tanque();
+	GameObject *tanque3 = new Soldado();
+	GameObject *tanque4 = new Super_Tanque();
+	GameObject *tanque5 = new Helicoptero();
 
 	GameObject *objetoselecionado = new GameObject();
 	GameObject *objetoauxiliar = new GameObject();
 
-	tanque1->setNome("01");
+	tanque1->setNome("tanque1");
 	tanque1->setPosicao_x(80);
 	tanque1->setPosicao_y(320);
 
-	tanque2->setNome("02");
+	tanque2->setNome("tanque2");
 	tanque2->setPosicao_x(190);
 	tanque2->setPosicao_y(400);
 
-	tanque3->setNome("03");
+	tanque3->setNome("soldado");
 	tanque3->setPosicao_x(270);
 	tanque3->setPosicao_y(380);
 
-	tanque4->setNome("04");
+	tanque4->setNome("supertanque");
 	tanque4->setPosicao_x(320);
 	tanque4->setPosicao_y(430);
 
-	tanque5->setNome("05");
+	tanque5->setNome("helicoptero");
 	tanque5->setPosicao_x(550);
 	tanque5->setPosicao_y(400);
 
@@ -102,6 +105,15 @@ int main(){
 				objetoselecionado = objetoauxiliar;
 			}else{
 				if(objetoselecionado->Tipo() == "tanque"){
+					objetoselecionado = (Tanque*)objetoselecionado;
+					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
+				} else if(objetoselecionado->Tipo() == "soldado"){
+					objetoselecionado = (Tanque*)objetoselecionado;
+					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
+				} else if(objetoselecionado->Tipo() == "super_tanque"){
+					objetoselecionado = (Tanque*)objetoselecionado;
+					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
+				} else if(objetoselecionado->Tipo() == "helicoptero"){
 					objetoselecionado = (Tanque*)objetoselecionado;
 					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
 				}
