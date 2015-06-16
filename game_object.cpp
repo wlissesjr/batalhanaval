@@ -66,6 +66,20 @@ void GameObject::setForca(float forca){
 	this->forca = forca;
 }
 
+bool GameObject::isInimigo(){
+	return this->inimigo;
+}
+void GameObject::set_isInimigo(bool is){
+	this->inimigo = is;
+}
+
+bool GameObject::isAtingido(){
+	return this->atingido;
+}
+void GameObject::set_isAtingido(bool is){
+	this->atingido = is;
+}
+
 void GameObject::Update(){
 
 	this->velocidade_x = this->velocidade_x - (this->velocidade_x*this->atrito);

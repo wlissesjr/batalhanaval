@@ -47,6 +47,12 @@ public:
 	float getForca();
 	void setForca(float forca);
 
+	bool isInimigo();
+	void set_isInimigo(bool is);
+
+	bool isAtingido();
+	void set_isAtingido(bool is);
+
 	void Update();
 	virtual void Render();
 	virtual string Tipo();

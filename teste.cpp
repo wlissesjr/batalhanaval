@@ -38,6 +38,37 @@ int main(){
 	GameObject *tanque4 = new Super_Tanque();
 	GameObject *tanque5 = new Helicoptero();
 
+	GameObject *inimigo1 = new Tanque();
+	GameObject *inimigo2 = new Tanque();
+	GameObject *inimigo3 = new Soldado();
+	GameObject *inimigo4 = new Super_Tanque();
+	GameObject *inimigo5 = new Helicoptero();
+
+	inimigo1->setNome("inimigo1");
+	inimigo1->setPosicao_x(rand()%600);
+	inimigo1->setPosicao_y(rand()%300);
+	inimigo1->set_isInimigo(true);
+
+	inimigo2->setNome("inimigo2");
+	inimigo2->setPosicao_x(rand()%600);
+	inimigo2->setPosicao_y(rand()%300);
+	inimigo2->set_isInimigo(true);
+
+	inimigo3->setNome("inimigo3");
+	inimigo3->setPosicao_x(rand()%600);
+	inimigo3->setPosicao_y(rand()%300);
+	inimigo3->set_isInimigo(true);
+
+	inimigo4->setNome("inimigo4");
+	inimigo4->setPosicao_x(rand()%600);
+	inimigo4->setPosicao_y(rand()%300);
+	inimigo4->set_isInimigo(true);
+
+	inimigo5->setNome("inimigo5");
+	inimigo5->setPosicao_x(rand()%600);
+	inimigo5->setPosicao_y(rand()%300);
+	inimigo5->set_isInimigo(true);
+
 	GameObject *objetoselecionado = new GameObject();
 	GameObject *objetoauxiliar = new GameObject();
 
@@ -66,6 +97,12 @@ int main(){
 	lista->Add(tanque3);
 	lista->Add(tanque4);
 	lista->Add(tanque5);
+
+	lista->Add(inimigo1);
+	lista->Add(inimigo2);
+	lista->Add(inimigo3);
+	lista->Add(inimigo4);
+	lista->Add(inimigo5);
 
 	ALLEGRO_EVENT events;
 

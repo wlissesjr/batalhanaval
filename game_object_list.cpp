@@ -64,6 +64,9 @@ void GameObjectList::Update(){
 		if(atual->elemento->getVida() <= 0){
 			this->Remove(atual->elemento);
 		}
+		if(atual->elemento->getPosicao_x() > 600 || atual->elemento->getPosicao_x() < 0 || atual->elemento->getPosicao_y() > 600 || atual->elemento->getPosicao_y() < 0){
+			this->Remove(atual->elemento);
+		}
 		atual = atual->proximo;
 	}
 }
@@ -88,6 +91,7 @@ void GameObjectList::Colisao(GameObject *bala){
 			float vida = veiculo->elemento->getVida() - bala->getForca();
 			this->Remove(bala);
 			veiculo->elemento->setVida(vida);
+			veiculo->elemento->set_isAtingido(true);
 		}
 		veiculo = veiculo->proximo;
 	}
