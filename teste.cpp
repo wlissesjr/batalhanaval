@@ -72,25 +72,28 @@ int main(){
 	GameObject *objetoselecionado = new GameObject();
 	GameObject *objetoauxiliar = new GameObject();
 
+	GameObject *objetoselecionadoinimigo = new GameObject();
+	GameObject *objetoauxiliarinimigo = new GameObject();
+
 	tanque1->setNome("tanque1");
-	tanque1->setPosicao_x(80);
-	tanque1->setPosicao_y(320);
+	tanque1->setPosicao_x(rand()%600);
+	tanque1->setPosicao_y(300+rand()%300);
 
 	tanque2->setNome("tanque2");
-	tanque2->setPosicao_x(190);
-	tanque2->setPosicao_y(400);
+	tanque2->setPosicao_x(rand()%600);
+	tanque2->setPosicao_y(300+rand()%300);
 
 	tanque3->setNome("soldado");
-	tanque3->setPosicao_x(270);
-	tanque3->setPosicao_y(380);
+	tanque3->setPosicao_x(rand()%600);
+	tanque3->setPosicao_y(300+rand()%300);
 
 	tanque4->setNome("supertanque");
-	tanque4->setPosicao_x(320);
-	tanque4->setPosicao_y(430);
+	tanque4->setPosicao_x(rand()%600);
+	tanque4->setPosicao_y(300+rand()%300);
 
 	tanque5->setNome("helicoptero");
-	tanque5->setPosicao_x(550);
-	tanque5->setPosicao_y(400);
+	tanque5->setPosicao_x(rand()%600);
+	tanque5->setPosicao_y(300+rand()%300);
 
 	lista->Add(tanque1);
 	lista->Add(tanque2);
@@ -138,9 +141,10 @@ int main(){
 		}
 		if(events.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
 			objetoauxiliar = lista->Mouse_Down(events.mouse.x,events.mouse.y);
-			if(objetoauxiliar != NULL){
+			if(objetoauxiliar != NULL && objetoauxiliar->isInimigo() == false){
 				objetoselecionado = objetoauxiliar;
 			}else{
+
 				if(objetoselecionado->Tipo() == "tanque"){
 					objetoselecionado = (Tanque*)objetoselecionado;
 					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
