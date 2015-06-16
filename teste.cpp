@@ -72,9 +72,6 @@ int main(){
 	GameObject *objetoselecionado = new GameObject();
 	GameObject *objetoauxiliar = new GameObject();
 
-	GameObject *objetoselecionadoinimigo = new GameObject();
-	GameObject *objetoauxiliarinimigo = new GameObject();
-
 	tanque1->setNome("tanque1");
 	tanque1->setPosicao_x(rand()%600);
 	tanque1->setPosicao_y(300+rand()%300);
@@ -144,7 +141,6 @@ int main(){
 			if(objetoauxiliar != NULL && objetoauxiliar->isInimigo() == false){
 				objetoselecionado = objetoauxiliar;
 			}else{
-
 				if(objetoselecionado->Tipo() == "tanque"){
 					objetoselecionado = (Tanque*)objetoselecionado;
 					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);

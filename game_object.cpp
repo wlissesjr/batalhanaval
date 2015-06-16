@@ -82,11 +82,11 @@ void GameObject::set_isAtingido(bool is){
 
 void GameObject::Update(){
 
-	/*this->velocidade_x = this->velocidade_x - (this->velocidade_x*this->atrito);
+	this->velocidade_x = this->velocidade_x - (this->velocidade_x*this->atrito);
 	this->velocidade_y = this->velocidade_y - (this->velocidade_y*this->atrito);
 
 	this->posicao_x += this->velocidade_x;
-	this->posicao_y += this->velocidade_y;*/
+	this->posicao_y += this->velocidade_y;
 	
 }
 
