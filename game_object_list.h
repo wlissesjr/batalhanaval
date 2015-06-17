@@ -23,6 +23,7 @@ public:
 	void Remove(GameObject *elemento);
 	void Render();
 	void Update();
+	bool Busca(GameObject *elemento);
 	GameObject* Mouse_Down(float x, float y);
 
 	void Colisao(GameObject *bala);

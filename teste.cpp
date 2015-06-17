@@ -45,51 +45,54 @@ int main(){
 	GameObject *inimigo5 = new Helicoptero();
 
 	inimigo1->setNome("inimigo1");
-	inimigo1->setPosicao_x(rand()%600);
+	inimigo1->setPosicao_x(rand()%568);
 	inimigo1->setPosicao_y(rand()%300);
 	inimigo1->set_isInimigo(true);
 
 	inimigo2->setNome("inimigo2");
-	inimigo2->setPosicao_x(rand()%600);
+	inimigo2->setPosicao_x(rand()%568);
 	inimigo2->setPosicao_y(rand()%300);
 	inimigo2->set_isInimigo(true);
 
 	inimigo3->setNome("inimigo3");
-	inimigo3->setPosicao_x(rand()%600);
+	inimigo3->setPosicao_x(rand()%568);
 	inimigo3->setPosicao_y(rand()%300);
 	inimigo3->set_isInimigo(true);
 
 	inimigo4->setNome("inimigo4");
-	inimigo4->setPosicao_x(rand()%600);
+	inimigo4->setPosicao_x(rand()%568);
 	inimigo4->setPosicao_y(rand()%300);
 	inimigo4->set_isInimigo(true);
 
 	inimigo5->setNome("inimigo5");
-	inimigo5->setPosicao_x(rand()%600);
+	inimigo5->setPosicao_x(rand()%568);
 	inimigo5->setPosicao_y(rand()%300);
 	inimigo5->set_isInimigo(true);
 
 	GameObject *objetoselecionado = new GameObject();
+	objetoselecionado = tanque1;
 	GameObject *objetoauxiliar = new GameObject();
+	GameObject *objetoauxiliar2 = new GameObject(); //
+	GameObject *objetoinimigo = new GameObject(); //
 
 	tanque1->setNome("tanque1");
-	tanque1->setPosicao_x(rand()%600);
+	tanque1->setPosicao_x(rand()%568);
 	tanque1->setPosicao_y(300+rand()%300);
 
 	tanque2->setNome("tanque2");
-	tanque2->setPosicao_x(rand()%600);
+	tanque2->setPosicao_x(rand()%568);
 	tanque2->setPosicao_y(300+rand()%300);
 
 	tanque3->setNome("soldado");
-	tanque3->setPosicao_x(rand()%600);
+	tanque3->setPosicao_x(rand()%568);
 	tanque3->setPosicao_y(300+rand()%300);
 
 	tanque4->setNome("supertanque");
-	tanque4->setPosicao_x(rand()%600);
+	tanque4->setPosicao_x(rand()%568);
 	tanque4->setPosicao_y(300+rand()%300);
 
 	tanque5->setNome("helicoptero");
-	tanque5->setPosicao_x(rand()%600);
+	tanque5->setPosicao_x(rand()%568);
 	tanque5->setPosicao_y(300+rand()%300);
 
 	lista->Add(tanque1);
@@ -117,6 +120,8 @@ int main(){
 
 	bool finalizado = false;
 	bool draw = false;
+	int inimigo_aleatorio = 0; //
+	bool existe_lista = false;
 
 	ALLEGRO_COLOR cor = al_map_rgb(0,0,139);
 
@@ -153,8 +158,65 @@ int main(){
 				} else if(objetoselecionado->Tipo() == "helicoptero"){
 					objetoselecionado = (Tanque*)objetoselecionado;
 					objetoauxiliar = objetoselecionado->Atirar(events.mouse.x,events.mouse.y);
+				} else if(objetoselecionado->Tipo() == "bala"){
+					break;
 				}
 				lista->Add(objetoauxiliar);
+				//ataque inimigo
+				inimigo_aleatorio = rand()% 5 + 1;
+				//while (existe_lista == false) {
+					switch (inimigo_aleatorio) {
+						case 1:
+							if (lista->Busca(inimigo1)) {
+								objetoauxiliar2 = inimigo1;
+								//existe_lista = true;
+							} else {
+								objetoauxiliar2 = NULL;
+							}
+							break;
+						case 2:
+							if (lista->Busca(inimigo2)) {
+								objetoauxiliar2 = inimigo2;
+								//existe_lista = true;
+							} else {
+								objetoauxiliar2 = NULL;
+							}
+							break;
+						case 3:
+							if (lista->Busca(inimigo3)) {
+								objetoauxiliar2 = inimigo3;
+								//existe_lista = true;
+							} else {
+								objetoauxiliar2 = NULL;
+							}
+							break;
+						case 4:
+							if (lista->Busca(inimigo4)) {
+								objetoauxiliar2 = inimigo4;								
+								//existe_lista = true;
+							} else {
+								objetoauxiliar2 = NULL;
+							}
+							break;
+						case 5:
+							if (lista->Busca(inimigo5)) {
+								objetoauxiliar2 = inimigo5;
+								//existe_lista = true;
+							} else {
+								objetoauxiliar2 = NULL;
+							}
+							break;
+						default:
+							objetoauxiliar2 = NULL;
+					}
+				//}
+				if (objetoauxiliar2 != NULL) {
+					objetoinimigo = objetoauxiliar2->Atirar(rand()%600, rand()%300 + 300);
+					objetoinimigo->set_isInimigo(true);
+					objetoinimigo->set_isAtingido(objetoauxiliar2->isAtingido());
+					lista->Add(objetoinimigo);
+				}
+				//existe_lista = false;
 			}
 		}
 	}

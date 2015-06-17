@@ -27,9 +27,11 @@ Bala::Bala(float origem_x, float origem_y, float destino_x, float destino_y, int
 }
 
 void Bala::Render(){
-	ALLEGRO_COLOR cor = al_map_rgb(255,0,0);
-	
-	al_draw_filled_circle(this->posicao_x, this->posicao_y, 3, cor);
+	if (this->inimigo == 0 || (this-> inimigo == 1 && this->atingido == 1)) {
+		ALLEGRO_COLOR cor = al_map_rgb(255,0,0);
+		
+		al_draw_filled_circle(this->posicao_x, this->posicao_y, 3, cor);
+	}
 }
 
 string Bala::Tipo(){

@@ -24,6 +24,18 @@ void GameObjectList::Add(GameObject *elemento){
 	}
 }
 
+bool GameObjectList::Busca(GameObject *elemento){
+	No *atual = this->cabeca;
+	
+		while (atual->proximo != NULL) {
+			if(atual->proximo->elemento->getNome() == elemento->getNome()){
+				return true;
+			}
+			atual = atual->proximo;
+		}
+		return false;
+}
+
 void GameObjectList::Remove(GameObject *elemento){
 	No *atual = this->cabeca;
 	No *auxiliar;
@@ -84,14 +96,18 @@ GameObject* GameObjectList::Mouse_Down(float x, float y){
 
 void GameObjectList::Colisao(GameObject *bala){
 	No *veiculo = this->cabeca;
+	float vida = 0;
 	while(veiculo->proximo != NULL){
 		if((bala->getPosicao_x() >= veiculo->elemento->getPosicao_x() && bala->getPosicao_x() <= veiculo->elemento->getPosicao_x()+32)
 			&& (bala->getPosicao_y() >= veiculo->elemento->getPosicao_y() && bala->getPosicao_y() <= veiculo->elemento->getPosicao_y()+32)
 			&& bala->getNome() != veiculo->elemento->getNome()){
-			float vida = veiculo->elemento->getVida() - bala->getForca();
+			vida = veiculo->elemento->getVida() - bala->getForca();
 			this->Remove(bala);
 			veiculo->elemento->setVida(vida);
-			veiculo->elemento->set_isAtingido(true);
+			if((bala->isInimigo() == 1 && veiculo->elemento->isInimigo() == 0)
+			 || (bala->isInimigo() == 0 && veiculo->elemento->isInimigo() == 1)){
+				veiculo->elemento->set_isAtingido(true);
+			}
 		}
 		veiculo = veiculo->proximo;
 	}
